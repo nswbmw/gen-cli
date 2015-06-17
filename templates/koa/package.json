@@ -1,0 +1,9 @@
+{
+  "name": "koa-seed",
+  "version": "0.0.0",
+  "dependencies": {
+    "koa": "^0.21.0",
+    "koa-bodyparser": "^2.0.0",
+    "config-lite": "^1.0.0"
+  }
+}

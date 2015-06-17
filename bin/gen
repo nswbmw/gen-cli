@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+ 
+/**
+ * Module dependencies.
+ */
+
+var fs = require('fs');
+var path = require('path');
+var program = require('commander');
+var chalk = require('chalk');
+var fse = require('fs-extra');
+var ls = require('ls-sync');
+var pkg = require('../package');
+
+program
+  .version(pkg.version)
+  .usage('[tplName] [projName]')
+  .description(pkg.description)
+  .option('-l, --list', 'list all available templates')
+  .option('-f, --force', 'force on non-empty directory');
+
+program.on('--help', function(){
+  console.log('  Example:');
+  console.log('');
+  console.log('    $ gen express myapp');
+  console.log('');
+});
+
+program.parse(process.argv);
+
+var templatesPath = path.join(__dirname, '../templates');
+var templates = fs.readdirSync(templatesPath);
+var tplName = program.args[0];
+var projName = program.args[1];
+
+if (program.list) {
+  for (var i = 0; i < templates.length; i++) {
+    console.log(chalk.green(templates[i]));
+  }
+  return;
+}
+if (!tplName || !projName) {
+  program.help();
+  return;
+}
+
+var tplPath = path.join(templatesPath, tplName);
+var projPath = path.join(process.cwd(), projName);
+
+if (!program.force) {
+  if (!fse.ensureDirSync(projPath)) {
+    console.error(chalk.red(projPath + ' already exist!'));
+    return;
+  }
+}
+
+// copy template to cwd
+fse.copySync(tplPath, projPath);
+console.log();
+ls(projPath).forEach(function (item) {
+  console.log(chalk.cyan('   create') + ' : ' + item.replace(process.cwd() + '/', ''));
+});
+console.log();
+console.log('   generate package.json:');
+console.log('     $ cd %s && npm init', projName);
+console.log();
+console.log('   install dependencies:');
+console.log('     $ npm install');
+console.log();

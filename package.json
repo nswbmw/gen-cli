@@ -1,0 +1,23 @@
+{
+  "name": "gen-cli",
+  "description": "Generate project seed tools.",
+  "version": "1.0.0",
+  "main": "bin/gen-cli",
+  "keywords": [
+    "gen",
+    "generator",
+    "scaffold",
+    "project"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "commander": "^2.8.1",
+    "fs-extra": "^0.19.0",
+    "ls-sync": "~0.3.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nswbmw/gen-cli.git"
+  }
+}
