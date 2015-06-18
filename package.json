@@ -1,7 +1,7 @@
 {
   "name": "gen-cli",
   "description": "Generate project seed tools.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "bin/gen",
   "keywords": [
     "gen",
@@ -9,6 +9,9 @@
     "scaffold",
     "project"
   ],
+  "bin": {
+    "gen": "./bin/gen"
+  },
   "dependencies": {
     "chalk": "^1.0.0",
     "commander": "^2.8.1",
