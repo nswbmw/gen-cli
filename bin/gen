@@ -52,6 +52,8 @@ if (!program.force) {
     console.error(chalk.red(projPath + ' already exist!'));
     return;
   }
+} else {
+  fse.removeSync(projPath);
 }
 
 // copy template to cwd
