@@ -22,7 +22,7 @@ program
 program.on('--help', function(){
   console.log('  Example:');
   console.log('');
-  console.log('    $ gen express myapp');
+  console.log('    $ gen express-ejs myapp');
   console.log('');
 });
 
